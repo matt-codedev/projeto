@@ -1,5 +1,5 @@
-import './App.css'
-import HomeFuncionario from './assets/pages/HomeFuncionario/HomeFuncionario'
+// import './App.css'
+import HomeFuncionario from './pages/HomeFuncionario/HomeFuncionario'
 
 function App() {
 

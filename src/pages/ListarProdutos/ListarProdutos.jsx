@@ -10,7 +10,7 @@ const arrayProdutos = [
         nome: "Pizza calabresa",
         precoVenda:59.90,
         descricao: "Pizza com bastante cebola"
-    }
+    },
     {
         id: 2,
         nome: "Pizza calabresa",

@@ -7,7 +7,7 @@ import {
 
 import HomeFuncionario from "../pages/HomeFuncionario/HomeFuncionario"
 import ListarProduto from "../pages/ListarProdutos/ListarProdutos"
-import ListarCategoria from "../pages/ListaCategoria/ListarCategoria"
+import ListarCategoria from "../pages/ListaCategoria/ListarCategoria"   
 
 //BrowserRouter: recarrega toda a página
 //HashRouter: recarrega só as partes necessárias

@@ -1,3 +1,4 @@
+import HomeFuncionario from "../HomeFuncionario/HomeFuncionario"
 import styles from "./MenuFuncionario.module.css"
 
 import { Link } from "react-router-dom"
@@ -5,6 +6,7 @@ import { Link } from "react-router-dom"
 const MenuFuncionario = () => {
 
     return (
+    
         <div>
 <nav className={`navbar navbar-expand-lg navbar-light bg-light p-2 rounded shadow-sm w-100 ${styles.menu}`}> 
         <Link

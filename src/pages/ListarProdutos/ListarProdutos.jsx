@@ -4,6 +4,19 @@ import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
 
 const ListarProduto = () => {
 
+  const [produtos, setProdutos] = useState ([])
+  useEffect(()=>{
+    api
+    .get("/produtos")
+    .then((response)=>{
+      console.log(response.data.data)
+      setProdutos(response.data.data)
+    })
+    .catch((error)=>{
+      console.error("Erro ao buscar a lista de produtos")
+    }
+  },[])
+
 const arrayProdutos = [
     {
         id: 1,
@@ -41,7 +54,7 @@ const arrayProdutos = [
             </tr> 
           </thead> 
           <tbody> 
-            {arrayProdutos.map((produtos)=> (
+            {arrayProdutos.map((produto)=> (
                 <tr key={produto.id}> 
                 <td style={{ fontSize: "13px" }}></td> 
                 <td style={{ fontSize: "13px" }}> 

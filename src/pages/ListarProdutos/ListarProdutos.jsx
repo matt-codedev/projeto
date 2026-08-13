@@ -13,10 +13,10 @@ const ListarProduto = () => {
       setProdutos(response.data.data)
     })
     .catch((error)=>{
-      console.error("Erro ao buscar a lista de produtos")
-    }
+      console.error("Erro ao buscar a lista de produtos", error)
+    })
   },[])
-
+/*
 const arrayProdutos = [
     {
         id: 1,
@@ -40,6 +40,7 @@ const arrayProdutos = [
     }
 
 ]
+    */
  return(
     <div className="container">
         <MenuFuncionario/>
@@ -54,7 +55,7 @@ const arrayProdutos = [
             </tr> 
           </thead> 
           <tbody> 
-            {arrayProdutos.map((produto)=> (
+            {produtos.map((produto)=> (
                 <tr key={produto.id}> 
                 <td style={{ fontSize: "13px" }}></td> 
                 <td style={{ fontSize: "13px" }}> 

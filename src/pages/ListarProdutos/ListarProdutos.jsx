@@ -1,10 +1,14 @@
 import React, {useState, useEffect} from "react"
 
+import { Link } from "react-router-dom"
+
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";   
+import api from "../../services/api"
 
 const ListarProduto = () => {
 
   const [produtos, setProdutos] = useState ([])
+
   useEffect(()=>{
     api
     .get("/produtos")
@@ -90,6 +94,15 @@ const arrayProdutos = [
              
           </tbody> 
         </table> 
+      </div>
+      <div className="text-end mt-3">
+        <Link
+        to="/produtos/novo"
+        className={`btn btn-sucess`}
+        >
+            <i className="fas fa-plus"></i> 
+            NovoProduto
+        </Link>
       </div>
     </div>
  )

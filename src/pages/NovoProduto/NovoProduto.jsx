@@ -2,6 +2,8 @@ import React, {useState, useEffect} from "react"
 
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
 
+import api from "../../services/api";
+
 const NovoProduto = () => {
 
     const [categorias, setCategorias] = useState ([])
@@ -19,6 +21,9 @@ const NovoProduto = () => {
     })
      },[ ] )
 
+     const escolherCategoria = (e) =>{
+      setCategoriaId(e.target.value)  
+     }
     return (
         <div className="container">
             <MenuFuncionario/>
@@ -50,10 +55,21 @@ const NovoProduto = () => {
                 <div className="mb-3"> 
                     <label className="block mb-1 font-semibold">Categoria:</label> 
                      <select 
+                   value={categoriasId}
+                   onChange={escolherCategoria}
                      className="border p-2 w-full rounded" 
                      required 
                      > 
                          <option value="">Selecione uma categoria</option> 
+                         {
+                          categorias
+                          .filter((cat)=> cat.codStatus === true)
+                          .map((cat)=>(
+                          <option key={cat.Id} value={cat.Id}>
+                            {cat.nome}
+                            </option>
+                          ))
+                         }
                      </select> 
                 </div> 
  

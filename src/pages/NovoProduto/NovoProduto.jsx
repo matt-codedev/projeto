@@ -10,6 +10,10 @@ const NovoProduto = () => {
 
     const [categoriasId, setCategoriasId] = useState("")
 
+    const [nome, setNome] = useState ("")
+    const[precoVenda, setPrecoVenda] = useState ("")
+    const[descricao, setDescricao] = useState ("")
+
     useEffect( ( ) =>{
             api
     .get("/categorias")
@@ -23,6 +27,17 @@ const NovoProduto = () => {
 
      const escolherCategoria = (e) =>{
       setCategoriaId(e.target.value)  
+     }
+
+     const enviarProduto = async (e) => {
+      e.preventDefault();
+      const produto = {
+        nome: nome,
+        precoVenda: parseFloat(precoVenda),
+        tipo: "Grande",
+        descricao: descricao,
+        categoriaId: Number(categoriaId)
+      }
      }
     return (
         <div className="container">

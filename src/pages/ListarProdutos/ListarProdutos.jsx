@@ -1,7 +1,8 @@
-import React, {useState, useEffect} from "react"
+import React, {useState, useEffect} from "react";
 
 import { Link } from "react-router-dom"
 
+import CredentialUser from "../../components/CredentialUser";
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";   
 import api from "../../services/api"
 
@@ -48,6 +49,7 @@ const arrayProdutos = [
  return(
     <div className="container">
         <MenuFuncionario/>
+        <CredentialUser title="Lista de produtos"/>
         <div className="table-responsive"> 
         <table className="table table-bordered table-striped table-hover"> 
           <thead className="table-sucess"> 
@@ -55,7 +57,7 @@ const arrayProdutos = [
               <th>Nome</th> 
               <th>Preço</th> 
               <th>Descrição</th>    
-              <th>Ações</th> {/* Nova coluna de Ações */} 
+              <th>Ações</th> 
             </tr> 
           </thead> 
           <tbody> 
@@ -101,7 +103,7 @@ const arrayProdutos = [
         className={`btn btn-sucess`}
         >
             <i className="fas fa-plus"></i> 
-            NovoProduto
+            Novo Produto
         </Link>
       </div>
     </div>

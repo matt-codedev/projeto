@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from "react"
 
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";
+import CredentialUser from "../../components/CredentialUser";
 
 import api from "../../services/api";
 
@@ -26,7 +27,7 @@ const NovoProduto = () => {
      },[ ] )
 
      const escolherCategoria = (e) =>{
-      setCategoriaId(e.target.value)  
+       setCategoriasId(e.target.value)  
      }
 
      const enviarProduto = async (e) => {
@@ -36,18 +37,32 @@ const NovoProduto = () => {
         precoVenda: parseFloat(precoVenda),
         tipo: "Grande",
         descricao: descricao,
-        categoriaId: Number(categoriaId)
+        categoriasId: Number(categoriasId)
+      }
+      try {
+        const response = await api.post("/produtos", produto,{
+          "Content-Type" : "application/json"
+        })
+        alert(`${(response.data.data.nome)}cadastrado com sucesso!`)
+        setNome("")
+        setPrecoVenda("")
+        setDescricao("")
+      } catch(error){
+        console.error(`Não foi possível salvar o produto ${error}`)
       }
      }
     return (
         <div className="container">
             <MenuFuncionario/>
-            <form className="container-fluid p-4"> 
+            <CredentialUser title="Cadastro de produtos"/>
+            <form onSubmit={enviarProduto} className="container-fluid p-4"> 
                 <div className="mb-3"> 
                     <label className="form-label">Nome:</label> 
                     <input 
                       type="text" 
                       className="form-control" 
+                      value={nome}
+                      onChange={(e)=> setNome(e.target.value)}
                       required 
                     /> 
                 </div> 
@@ -56,6 +71,8 @@ const NovoProduto = () => {
                     <input 
                       type="text" 
                       className="form-control"  
+                      value={precoVenda}
+                      onChange={(e)=> setPrecoVenda(e.target.value)}
                       required 
                     /> 
                 </div> 
@@ -63,6 +80,8 @@ const NovoProduto = () => {
                     <label className="form-label">Descrição:</label> 
                     <textarea 
                       className="form-control" 
+                      value={descricao}
+                      onChange={(e)=> setDescricao(e.target.value)}
                       rows="3" 
                       required 
                     ></textarea> 

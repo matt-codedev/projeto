@@ -4,11 +4,14 @@ import { Link } from "react-router-dom"
 
 import CredentialUser from "../../components/CredentialUser";
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";   
+import Modal from "../../components/Modal"
 import api from "../../services/api"
 
 const ListarProduto = () => {
 
   const [produtos, setProdutos] = useState ([])
+  const [isModalOpen, setIsModalOpen] = useState(false)
+  const [idProdutoAExcluir, setIdProdutoAExcluir] = useState(null)
 
   useEffect(()=>{
     api
@@ -21,6 +24,27 @@ const ListarProduto = () => {
       console.error("Erro ao buscar a lista de produtos", error)
     })
   },[])
+  
+  const openModal = (id) =>{
+      setIdProdutoAExcluir(id)
+      setIsModalOpen(true)
+  }
+
+  const deleteProduto = async () => {
+    try{
+      const response = await api.delete(`/produtos/${idProdutoAExcluir}`)
+      alert(response.data.message)
+
+      setProdutos((produtosAtuais)=>
+      produtosAtuais.filter(
+        (produto)=> produto.id !== idProdutoAExcluir
+      )
+    )
+    } catch(error) {
+      alert(`Não foi possível a exclusão do produto com o id ${idProdutoAExcluir}`)
+    }
+    setIsModalOpen(false)
+  }
 /*
 const arrayProdutos = [
     {
@@ -85,7 +109,9 @@ const arrayProdutos = [
  
                   {/* Botão de Excluir */} 
                   <button 
-                    className="btn btn-sm btn-danger"> 
+                    className="btn btn-sm btn-danger"
+                    onClick={()=> openModal(produto.id)}
+                    > 
                     <i className="fas fa-trash-alt"></i>{" "} 
                     {/* Ícone de excluir */} 
                   </button> 
@@ -106,6 +132,13 @@ const arrayProdutos = [
             Novo Produto
         </Link>
       </div>
+            
+<Modal
+isOpen={isModalOpen}
+onClose={()=> setIsModalOpen(false)}
+onConfirm={deleteProduto}
+/>
+
     </div>
  )
 }

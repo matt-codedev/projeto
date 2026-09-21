@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 
 import CredentialUser from "../../components/CredentialUser";
 import MenuFuncionario from "../MenuFuncionario/MenuFuncionario";   
@@ -12,6 +12,7 @@ const ListarProduto = () => {
   const [produtos, setProdutos] = useState ([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [idProdutoAExcluir, setIdProdutoAExcluir] = useState(null)
+  const navigate = useNavigate();
 
   useEffect(()=>{
     api
@@ -102,7 +103,10 @@ const arrayProdutos = [
                 <td className="text-center fs-6" style={{ width: "100px" }}> 
                   {/* Botão de Editar */} 
                   <button 
-                    className="btn btn-sm btn-primary me-2"> 
+                    className="btn btn-sm btn-primary me-2"
+                    onClick={()=>
+                      navigate(`/produtos/editar/${produto.id}`)
+                    }> 
                     <i className="fas fa-pencil-alt"></i>{" "} 
                     {/* Ícone de editar */} 
                   </button> 
